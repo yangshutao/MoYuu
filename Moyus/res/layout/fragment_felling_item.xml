@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" 
+    android:background="#cccccc">
+
+    <ImageView
+        android:id="@+id/image_touxiang"
+        android:layout_width="wrap_content"
+        android:layout_height="80dip"
+        android:src="@drawable/ic_launcher" />
+
+    
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dip"
+        android:layout_marginLeft="10dip">
+        <TextView
+	        android:id="@+id/text_username"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	       	style="@style/font_20"
+	        android:text="@string/username" />
+        <TextView
+	        android:id="@+id/text_userjieshao"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="25dip"
+	        android:text="@string/time_place_apart" />
+        <TextView
+	        android:id="@+id/text_userxinqing"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="50dip"
+	        android:singleLine="true"
+	        android:ellipsize="end"
+	        android:text="@string/sendmood" />
+    	<LinearLayout 
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:orientation="horizontal"
+    	    android:layout_marginTop="70dip">
+    	    <Button
+    	        android:id="@+id/zan"
+    	        android:layout_width="80dip"
+    	        android:layout_height="30dip"
+    	        style="@style/font_17"
+    	        android:background="#ffffff"
+    	        android:text="@string/help"/>
+    	     <Button
+    	        android:id="@+id/cai"
+    	        android:layout_width="80dip"
+    	        android:layout_height="30dip"
+    	        style="@style/font_17"
+    	        android:background="#ffffff"
+    	        android:layout_marginLeft="10dip"
+    	        android:text="@string/stamp"/>
+    	      <Button
+    	        android:id="@+id/pinglun"
+    	        android:layout_width="80dip"
+    	        android:layout_height="30dip"
+    	        style="@style/font_17"
+    	        android:background="#ffffff"
+    	        android:layout_marginLeft="10dip"
+    	        android:text="@string/discuss"/>
+    	</LinearLayout>
+    </RelativeLayout>
+    
+    
+
+</LinearLayout>

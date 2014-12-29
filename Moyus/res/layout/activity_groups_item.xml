@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" 
+    android:gravity="center_vertical"
+    android:background="#cccccc">
+
+    <ImageView
+        android:id="@+id/group_touxiang"
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        android:src="@drawable/ic_launcher" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dip"
+        android:layout_marginLeft="10dip" >
+
+        <TextView
+            android:id="@+id/group_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="23dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="这是群组简介" />
+
+        <TextView
+            android:id="@+id/group_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="17dp"
+            android:text="群组名"
+            android:textSize="20dip" />
+
+        <TextView
+            android:id="@+id/group_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/group_name"
+            android:layout_toRightOf="@+id/group_name"
+            android:text="(12345678)" />
+
+    </RelativeLayout>
+
+</LinearLayout>

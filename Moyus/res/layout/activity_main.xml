@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_img"
+    tools:context=".FunctionMainActivity" >
+    <LinearLayout
+        android:id="@+id/fragment_parent" 
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/function_btt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+    </LinearLayout>
+	<RadioGroup 
+	    android:id="@+id/function_btt"
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp"
+	    android:layout_alignParentBottom="true"
+	    android:layout_marginBottom="5dp"
+	    android:background="#5519C8E8"
+	    android:orientation="horizontal">
+	    <RadioButton 
+	        android:id="@+id/chat"
+	        android:layout_width="match_parent"
+	        android:layout_height="40dp"
+	        android:gravity="center"
+	        android:layout_weight="1"
+	        android:button="@null"
+	        android:background="@drawable/bg_grade_newuser"
+	        android:text="@string/chat_to_chat"/>
+
+	    <RadioButton
+	        android:id="@+id/friend"
+	        android:layout_width="match_parent"
+	       android:layout_height="40dp"
+	        android:layout_weight="1"
+	        android:background="@drawable/bg_grade_newuser"
+	        android:button="@null"
+	        android:gravity="center"
+	        android:text="@string/friends" />
+
+	    <RadioButton 
+	        android:id="@+id/mood"
+	        android:layout_width="match_parent"
+	        android:layout_height="40dp"
+	        android:gravity="center"
+	        android:layout_weight="1"
+	        android:button="@null"
+	        android:checked="true"
+	        android:textColor="#55ffffff"
+	        android:background="@drawable/bg_grade_newuser"
+	        android:text="@string/mood"/>
+	    <RadioButton 
+	        android:id="@+id/meet"
+	        android:layout_width="match_parent"
+	        android:layout_height="40dp"
+	        android:gravity="center"
+	        android:layout_weight="1"
+	        android:button="@null"
+	        android:background="@drawable/bg_grade_newuser"
+	        android:text="@string/meet"/>
+
+	    <RadioButton
+	        android:id="@+id/set_up"
+	        android:layout_width="match_parent"
+	       android:layout_height="40dp"
+	        android:gravity="center"
+	        android:layout_weight="1"
+	        android:button="@null"
+	        android:background="@drawable/bg_grade_newuser"
+	        android:text="@string/set_up" />
+
+	</RadioGroup>
+    
+</RelativeLayout>
