@@ -54,4 +54,8 @@
     <string name="quanxianyinsi">权限隐私</string>
     <string name="info">消息通知</string>
     <string name="asforour">关于我们</string>
+    <string name="camera">拍照</string>
+	<string name="album">从相册中选择</string>
+	<string name="give_up">取消</string>
+	<string name="choose">选择</string>
 </resources>
