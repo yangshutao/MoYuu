@@ -46,7 +46,6 @@ public class StickyGridAdapter extends BaseAdapter implements
 				Log.v("onScrollStateChanged", "onScrollStateChanged");
 				if (scrollState == OnScrollListener.SCROLL_STATE_IDLE) {
 					isScrollStop = true;
-					/** �˴���һ���ǵ�Ҫ���£���ȻͼƬ��û����Ŷ������ - - **/
 					notifyDataSetChanged();
 				} else {
 					isScrollStop = false;
@@ -99,9 +98,6 @@ public class StickyGridAdapter extends BaseAdapter implements
 	private void disPlayImage(String path, ImageView imageView) {
 		Log.v("isScroll", isScrollStop + "");
 		imageView.setTag(path);
-		/**
-		 * �˴�����Ĭ�ϵļ���ͼƬ���е����⡣���ڽ����С�����
-		 */
 		imageView.setImageResource(R.drawable.ic_launcher);
 		imageView.setBackgroundDrawable(new BitmapDrawable());
 

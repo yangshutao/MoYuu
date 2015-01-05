@@ -110,10 +110,10 @@ public class ScanLocalPicture extends BaseActivity {
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
-						Intent intent  = new Intent(ScanLocalPicture.this,ClipImageActivity.class);
+						Intent intent  = new Intent(ScanLocalPicture.this,MyDataActivity.class);
 						intent.putExtra("path",mGirdList.get(arg2).getPath());
-						startActivity(intent); 
-						
+						setResult(RESULT_OK,intent);
+						finish();
 					}
 				});
 			}

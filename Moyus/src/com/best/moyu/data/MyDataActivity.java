@@ -31,6 +31,7 @@ import android.widget.RadioButton;
 import com.best.moyu.baseactivity.BaseActivity;
 import com.best.moyu.ui.ClipImageActivity;
 import com.best.moyu.ui.ScanLocalPicture;
+import com.best.moyu.utils.CreateFile;
 import com.best.moyu.utils.SDCardUtils;
 import com.example.moyu.R;
 
@@ -52,16 +53,6 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 		bianjiziliao = (RadioButton) findViewById(R.id.bianjiziliao);
 		bianjiziliao.setOnClickListener(this);
 		xiangxixinxi.setOnClickListener(this);
-		
-		
-		
-		
-		
-		Intent in = getIntent();
-		
-		if(in.getParcelableExtra("imge")!=null){
-			xiangxixinxi.setImageBitmap((Bitmap)in.getParcelableExtra("imge"));
-		}
 	}
 	@Override
 	public void onClick(View arg0) {
@@ -73,7 +64,7 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.xiangxixinxi:
-			//调用虚拟更换头像按键
+			
 			showDialog();
 			break;
 		default:
@@ -110,7 +101,7 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 				dialog.dismiss();
 				//调用本地相册
 				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				startActivityForResult(intent, 1);
+				startActivityForResult(intent, 2);
 			}
 		});
 		album.setOnClickListener(new OnClickListener() {
@@ -120,7 +111,8 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 				// TODO Auto-generated method stub
 				dialog.dismiss();
 				Intent intent = new Intent(MyDataActivity.this,ScanLocalPicture.class);
-				startActivity(intent);
+				//startActivity(intent);
+				startActivityForResult(intent,1);
 			}
 		});
 		
@@ -139,50 +131,64 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	// TODO Auto-generated method stub
 	super.onActivityResult(requestCode, resultCode, data);
+	alert(requestCode+"");
+	if (resultCode==RESULT_OK){
 	switch (requestCode) {
-	case 1:
-		
-		 //判断是否有SD卡
-		 String sdStatus = Environment.getExternalStorageState();
-		 if (!sdStatus.equals(Environment.MEDIA_MOUNTED)){
-			 return;
-		 }
-		 //为随机给名字作的前提条件，获取的是年月日时分秒，逗号后面的是时区
-		 String name = new DateFormat().format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA)) + ".jpg";     
-         //alert(name);
-         //获得调用本地相机获得的图片
-         Bundle bundle = data.getExtras();  
-         Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式  
-         FileOutputStream b = null;  
-         //此处应该放入本地相册  
-          String Paths = "/sdcard/DCIM/100ANDRO/"; 
-          File file = new File("/sdcard/DCIM/100ANDRO/"); 
-          file.mkdirs();// 创建文件夹  
-         //图片存储的路径
-          String fileName = "/sdcard/DCIM/100ANDRO/"+name;  
+		case 1:
+			Intent intent2 = new Intent(this,ClipImageActivity.class);
+			intent2.putExtra("path", data.getStringExtra("path"));
+			startActivityForResult(intent2, 3);
+			break;
+		case 2:
+			 //判断是否有SD卡
+			 String sdStatus = Environment.getExternalStorageState();
+			 if (!sdStatus.equals(Environment.MEDIA_MOUNTED)){
+				 return;
+			 }
+			 //为随机给名字作的前提条件，获取的是年月日时分秒，逗号后面的是时区
+			 String name = new DateFormat().format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA)) + ".jpg";     
+	         //alert(name);
+	         //获得调用本地相机获得的图片
+	         Bundle bundle = data.getExtras();  
+	         Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式  
+	         FileOutputStream b = null;  
+	         //此处应该放入本地相册  
+	          String Paths = "/sdcard/DCIM/100ANDRO/"; 
+	          File file = new File("/sdcard/DCIM/100ANDRO/"); 
+	          file.mkdirs();// 创建文件夹  
+	         //图片存储的路径
+	          String fileName = "/sdcard/DCIM/100ANDRO/"+name;  
 
-          try {  
-              b = new FileOutputStream(fileName);  
-              bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件  
-          } catch (FileNotFoundException e) {  
-              e.printStackTrace();  
-          } finally {  
-              try {  
-                  b.flush();  
-                  b.close();  
-              } catch (IOException e) {  
-                  e.printStackTrace();  
-              }  
-          } 
-          Intent intent = new Intent(this,ClipImageActivity.class);
-          intent.putExtra("path", fileName);
-          startActivity(intent);
-          finish();
-		break;
-
-	default:
-		break;
+	          try {  
+	              b = new FileOutputStream(fileName);  
+	              bitmap.compress(Bitmap.CompressFormat.PNG, 100, b);// 把数据写入文件  
+	          } catch (FileNotFoundException e) {  
+	              e.printStackTrace();  
+	          } finally {  
+	              try {  
+	                  b.flush();  
+	                  b.close();  
+	              } catch (IOException e) {  
+	                  e.printStackTrace();  
+	              }  
+	          } 
+	          Intent intent = new Intent(this,ClipImageActivity.class);
+	          intent.putExtra("path", fileName);
+	          startActivityForResult(intent,3);
+	          finish();
+			break;
+		case 3:
+			xiangxixinxi.setImageBitmap((Bitmap)data.getParcelableExtra("imge"));
+			break;
+		default:
+			break;
+		}
 	}
+	
+	
+	
+	
+	
 	   
 	   
 	   

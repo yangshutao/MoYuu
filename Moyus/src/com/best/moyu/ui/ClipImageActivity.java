@@ -46,7 +46,6 @@ public class ClipImageActivity extends BaseActivity implements OnClickListener {
 		xuanze = (Button) findViewById(R.id.chose_c);
 		quxiao.setOnClickListener(this);
 		xuanze.setOnClickListener(this);
-		
 	}
 	@Override
 	public void onClick(View v) {
@@ -70,7 +69,7 @@ public class ClipImageActivity extends BaseActivity implements OnClickListener {
 			bitmap = mClipImageLayout.clip();
 			try {  
 				fileoutputSteam = new FileOutputStream(fileName);  
-	              bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileoutputSteam);// 把数据写入文件  
+	              bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileoutputSteam);// 把数据写入文件  
 	          } catch (FileNotFoundException e) {  
 	              e.printStackTrace();  
 	          } finally {  
@@ -83,7 +82,7 @@ public class ClipImageActivity extends BaseActivity implements OnClickListener {
 	          }
 			Intent intent = new Intent(this,MyDataActivity.class);
 			intent.putExtra("imge", bitmap);
-			startActivity(intent);
+			setResult(RESULT_OK, intent);
 			finish();
 			break;
 		default:
