@@ -3,12 +3,39 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/logs_background"
     >
-    	
+    
+    <TextView 
+        android:id="@+id/bb"
+        android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="编辑资料"
+		android:gravity="center_horizontal|center"
+		
+		android:layout_alignParentTop="true"
+		android:textSize="20dp"
+		android:textColor="#fff"
+		android:paddingTop="15dp"
+        />
+    <TextView 
+	    android:id="@+id/baocun_shuju"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="完成"
+	    android:textColor="#0000ee"
+	    android:textSize="20dp"
+	    android:layout_gravity="center"
+	    android:layout_alignBottom="@id/bb"
+	    android:layout_alignParentRight="true"
+	    android:paddingRight="20dp"
+	    
+	    />
 	    <TableLayout 
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:orientation="vertical" 
+		    android:paddingTop="57dp"
 	    >
 	    <TableRow 
 	        android:layout_width="match_parent"
@@ -18,17 +45,22 @@
 	        <TextView 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+	            android:layout_weight="3"
 	            android:text="昵称"
 	            android:layout_gravity="center"
 	            android:textSize="18dp"
+	            android:paddingLeft="5dp"
 	            />
 	        <EditText 
 	            android:id="@+id/edit_nicheng"
-	            android:layout_width="200dp"
+	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_gravity="center"
+	            android:layout_weight="9"
+	            android:layout_marginRight="10dp"
+	            android:layout_gravity="center_vertical"
+	            android:background="@drawable/correct_bg"
+	            android:lines="1"
 	            android:hint="雨下."
-	            android:background="@null"
 	            />
 	    </TableRow>
 	    <View 
@@ -47,15 +79,19 @@
 	            android:text="性别"
 	            android:layout_gravity="center"
 	            android:textSize="18dp"
+	            android:paddingLeft="5dp"
+	            android:layout_weight="3"
 	            />
 	        <EditText 
 	            android:id="@+id/edit_sex"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:hint="男"
-	            android:background="@null"
-	            android:layout_gravity="center"
-	            />
+	            android:layout_weight="9"
+	            android:layout_marginRight="10dp"
+	            android:layout_gravity="center_vertical"
+	            android:background="@drawable/register_input_bg"
+	            /> 
 	    </TableRow>
 	    <View 
             android:layout_width="fill_parent"
@@ -73,14 +109,20 @@
 	            android:text="年龄"
 	            android:layout_gravity="center"
 	            android:textSize="18dp"
+	            android:paddingLeft="5dp"
+	            android:layout_weight="3"
 	            />
 	        <EditText 
 	            android:id="@+id/edit_year"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:hint="20岁"
-	            android:background="@null"
-	            android:layout_gravity="center"
+	            android:hint="20"
+	            android:layout_weight="9"
+	            android:layout_marginRight="10dp"
+	            android:layout_gravity="center_vertical"
+	            android:background="@drawable/register_input_bg"
+	            android:digits="1234567890"
+	            android:maxLength="3"
 	            />
 	    </TableRow>
 	    <View 
@@ -94,22 +136,26 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:paddingTop="10dp"
+	        
 	        >
 	        <TextView 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="邮箱"
+	             android:layout_weight="3"
 	            android:layout_gravity="center"
 	            android:textSize="18dp"
+	            android:paddingLeft="5dp"
 	            />
 	        <EditText 
 	            android:id="@+id/edit_Emile"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:hint="1056540798@qq.com"
-	            android:background="@null"
-	            android:layout_gravity="center"
+	            android:layout_weight="9"
+	            android:layout_marginRight="10dp"
+	            android:layout_gravity="center_vertical"
+	            android:background="@drawable/register_input_bg"
 	            />
 	    </TableRow>
 	    <View 
@@ -126,16 +172,20 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="手机号"
+	             android:layout_weight="3"
 	            android:layout_gravity="center"
 	            android:textSize="18dp"
+	            android:paddingLeft="5dp"
 	            />
 	        <EditText 
 	            android:id="@+id/edit_phone"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:hint="18265918979"
-	            android:background="@null"
-	            android:layout_gravity="center"
+	            android:layout_weight="9"
+	            android:layout_marginRight="10dp"
+	            android:layout_gravity="center_vertical"
+	            android:background="@drawable/register_input_bg"
 	            />
 	    </TableRow>
 	    <View 
@@ -152,16 +202,20 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:text="真实姓名"
+	             android:layout_weight="3"
 	            android:layout_gravity="center"
 	            android:textSize="18dp"
+	            android:paddingLeft="10dp"
 	            />
 	        <EditText 
 	            android:id="@+id/edit_zhenshi_name"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:hint="神一样的男人"
-	            android:background="@null"
-	            android:layout_gravity="center"
+	             android:layout_weight="9"
+	             android:hint="奥巴马"
+	            android:layout_marginRight="10dp"
+	            android:layout_gravity="center_vertical"
+	            android:background="@drawable/register_input_bg"
 	            />
 	    </TableRow>
 	    <View 
@@ -177,20 +231,30 @@
 	        <TextView 
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:text="职业"
+	            android:text="个性签名"
+	             android:layout_weight="3"
 	            android:layout_gravity="center"
 	            android:textSize="18dp"
+	            android:paddingLeft="10dp"
 	            />
 	        <EditText 
-	            android:id="@+id/edit_occupation"
+	            android:id="@+id/edit_underWrite"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:hint="5+1董事长"
-	            android:background="@null"
-	            android:layout_gravity="center"
+	            android:hint="今天好不开心啊 。。。。"
+	            android:ellipsize="end"
+	            android:singleLine="true"
+	            android:layout_weight="9"
+	            android:layout_marginRight="10dp"
+	            android:layout_gravity="center_vertical"
+	            android:background="@drawable/register_input_bg"
 	            />
 	    </TableRow>
-	
+	 <View 
+            android:layout_width="fill_parent"
+            android:layout_height="0.3dp"
+            android:background="#cdc5bf"
+            />
 	</TableLayout>
     
 </RelativeLayout>

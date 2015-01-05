@@ -60,16 +60,14 @@ public class ClipImageActivity extends BaseActivity implements OnClickListener {
 				alert("有sd卡");
 			}
 			String name = new DateFormat().format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA)) + ".jpg";
-			name ="moyu"+name;
+			name ="moyu_"+name;
 			File file ;
 			FileOutputStream fileoutputSteam = null;
 			file = new File("/sdcard/Moyu/Image/");
 			file.mkdirs();//创建文件夹
 			String fileName = "/sdcard/Moyu/Image/"+name;
 			Bitmap bitmap;
-			
 			bitmap = mClipImageLayout.clip();
-			
 			try {  
 				fileoutputSteam = new FileOutputStream(fileName);  
 	              bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileoutputSteam);// 把数据写入文件  

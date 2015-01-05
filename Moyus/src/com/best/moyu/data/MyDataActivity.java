@@ -52,13 +52,16 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 		bianjiziliao = (RadioButton) findViewById(R.id.bianjiziliao);
 		bianjiziliao.setOnClickListener(this);
 		xiangxixinxi.setOnClickListener(this);
+		
+		
+		
+		
+		
 		Intent in = getIntent();
+		
 		if(in.getParcelableExtra("imge")!=null){
 			xiangxixinxi.setImageBitmap((Bitmap)in.getParcelableExtra("imge"));
 		}
-		
-		//in.getParcelableExtra("imge");
-		
 	}
 	@Override
 	public void onClick(View arg0) {
@@ -107,7 +110,6 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 				dialog.dismiss();
 				//调用本地相册
 				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				alert("走了相册");
 				startActivityForResult(intent, 1);
 			}
 		});
@@ -136,33 +138,28 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
    @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	// TODO Auto-generated method stub
-	   alert("走到了方法中");
 	super.onActivityResult(requestCode, resultCode, data);
-	alert( requestCode+">>>>>>>>");
 	switch (requestCode) {
 	case 1:
-		 alert("我进来了");
+		
 		 //判断是否有SD卡
 		 String sdStatus = Environment.getExternalStorageState();
 		 if (!sdStatus.equals(Environment.MEDIA_MOUNTED)){
 			 return;
 		 }
+		 //为随机给名字作的前提条件，获取的是年月日时分秒，逗号后面的是时区
 		 String name = new DateFormat().format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA)) + ".jpg";     
-         alert(name); 
+         //alert(name);
+         //获得调用本地相机获得的图片
          Bundle bundle = data.getExtras();  
          Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式  
          FileOutputStream b = null;  
          //此处应该放入本地相册  
           String Paths = "/sdcard/DCIM/100ANDRO/"; 
-          File file = new File(Paths); 
-          //因为安卓手机的本地相册有多种所以需要判断
-          if (!file.exists()){
-        	  Paths = "/sdcard/DCIM/Camera/";
-        	  file = new File(Paths); 
-          }
-          
+          File file = new File("/sdcard/DCIM/100ANDRO/"); 
           file.mkdirs();// 创建文件夹  
-          String fileName = Paths+name;  
+         //图片存储的路径
+          String fileName = "/sdcard/DCIM/100ANDRO/"+name;  
 
           try {  
               b = new FileOutputStream(fileName);  
@@ -180,6 +177,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
           Intent intent = new Intent(this,ClipImageActivity.class);
           intent.putExtra("path", fileName);
           startActivity(intent);
+          finish();
 		break;
 
 	default:

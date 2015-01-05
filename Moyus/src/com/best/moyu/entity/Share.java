@@ -1,8 +1,12 @@
 package com.best.moyu.entity;
 
-public class Share {
+import cn.bmob.v3.BmobObject;
+
+public class Share extends BmobObject{
 	  public int ID; //主键
 	  public int LoginUserID;//用户ID
+	  public String biaoshi;
+	 
 	  public String ShareTime;//发表时间
 	  public String  ShareLongitude;//发表经度
 	  public String  ShareLatitude;//发表纬度
@@ -16,7 +20,7 @@ public class Share {
 	  public int  Stamps;//踢的次数
 	  public String  StampsUserInfoID;//踢的人的id
 	  public int  Comments;//评论的人数
-	public Share(int iD, int loginUserID, String shareTime, String shareLongitude,
+	  public Share(int iD, int loginUserID, String shareTime, String shareLongitude,
 			String shareLatitude, String text, String image, String music,
 			String sound, String video, int approves, String approvesUserInfoID,
 			int stamps, String stampsUserInfoID, int comments) {
@@ -37,9 +41,39 @@ public class Share {
 		StampsUserInfoID = stampsUserInfoID;
 		Comments = comments;
 	}
+	
+	
 	public Share() {
-		super();
 	}
+	 public Share(int iD, int loginUserID, String biaoshi, String shareTime,
+				String shareLongitude, String shareLatitude, String text,
+				String image, String music, String sound, String video,
+				int approves, String approvesUserInfoID, int stamps,
+				String stampsUserInfoID, int comments) {
+			super();
+			ID = iD;
+			LoginUserID = loginUserID;
+			this.biaoshi = biaoshi;
+			ShareTime = shareTime;
+			ShareLongitude = shareLongitude;
+			ShareLatitude = shareLatitude;
+			Text = text;
+			Image = image;
+			Music = music;
+			Sound = sound;
+			Video = video;
+			Approves = approves;
+			ApprovesUserInfoID = approvesUserInfoID;
+			Stamps = stamps;
+			StampsUserInfoID = stampsUserInfoID;
+			Comments = comments;
+		}
+		public String getBiaoshi() {
+			return biaoshi;
+		}
+		public void setBiaoshi(String biaoshi) {
+			this.biaoshi = biaoshi;
+		}
 	public int getID() {
 		return ID;
 	}
