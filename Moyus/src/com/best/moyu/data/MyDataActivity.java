@@ -1,13 +1,21 @@
 package com.best.moyu.data;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Locale;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager.OnActivityResultListener;
 import android.provider.MediaStore;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +29,9 @@ import android.widget.PopupMenu;
 import android.widget.RadioButton;
 
 import com.best.moyu.baseactivity.BaseActivity;
+import com.best.moyu.ui.ClipImageActivity;
 import com.best.moyu.ui.ScanLocalPicture;
+import com.best.moyu.utils.SDCardUtils;
 import com.example.moyu.R;
 
 /*
@@ -32,6 +42,7 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 	ImageView xiangxixinxi;
 	RadioButton bianjiziliao;
 	Button carema,album,give_up;
+	public String path;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addActivity(this);
@@ -41,6 +52,13 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 		bianjiziliao = (RadioButton) findViewById(R.id.bianjiziliao);
 		bianjiziliao.setOnClickListener(this);
 		xiangxixinxi.setOnClickListener(this);
+		Intent in = getIntent();
+		if(in.getParcelableExtra("imge")!=null){
+			xiangxixinxi.setImageBitmap((Bitmap)in.getParcelableExtra("imge"));
+		}
+		
+		//in.getParcelableExtra("imge");
+		
 	}
 	@Override
 	public void onClick(View arg0) {
@@ -87,20 +105,10 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				dialog.dismiss();
-				/**
-				 * 下面这句还是老样子，调用快速拍照功能，至于为什么叫快速拍照，大家可以参考如下官方
-				 * 文档，you_sdk_path/docs/guide/topics/media/camera.html
-				 * 我刚看的时候因为太长就认真看，其实是错的，这个里面有用的太多了，所以大家不要认为
-				 * 官方文档太长了就不看了，其实是错的，这个地方小马也错了，必须改正
-				 */
-				Intent intent = new Intent(
-						MediaStore.ACTION_IMAGE_CAPTURE);
-				//下面这句指定调用相机拍照后的照片存储的路径
-				intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri
-						.fromFile(new File(Environment
-								.getExternalStorageDirectory(),
-								"xiaoma.jpg")));
-				startActivityForResult(intent, 2);
+				//调用本地相册
+				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				alert("走了相册");
+				startActivityForResult(intent, 1);
 			}
 		});
 		album.setOnClickListener(new OnClickListener() {
@@ -125,5 +133,64 @@ public class MyDataActivity extends BaseActivity implements OnClickListener{
 		
 		dialog.show();
 	}
+   @Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	// TODO Auto-generated method stub
+	   alert("走到了方法中");
+	super.onActivityResult(requestCode, resultCode, data);
+	alert( requestCode+">>>>>>>>");
+	switch (requestCode) {
+	case 1:
+		 alert("我进来了");
+		 //判断是否有SD卡
+		 String sdStatus = Environment.getExternalStorageState();
+		 if (!sdStatus.equals(Environment.MEDIA_MOUNTED)){
+			 return;
+		 }
+		 String name = new DateFormat().format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA)) + ".jpg";     
+         alert(name); 
+         Bundle bundle = data.getExtras();  
+         Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式  
+         FileOutputStream b = null;  
+         //此处应该放入本地相册  
+          String Paths = "/sdcard/DCIM/100ANDRO/"; 
+          File file = new File(Paths); 
+          //因为安卓手机的本地相册有多种所以需要判断
+          if (!file.exists()){
+        	  Paths = "/sdcard/DCIM/Camera/";
+        	  file = new File(Paths); 
+          }
+          
+          file.mkdirs();// 创建文件夹  
+          String fileName = Paths+name;  
 
+          try {  
+              b = new FileOutputStream(fileName);  
+              bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件  
+          } catch (FileNotFoundException e) {  
+              e.printStackTrace();  
+          } finally {  
+              try {  
+                  b.flush();  
+                  b.close();  
+              } catch (IOException e) {  
+                  e.printStackTrace();  
+              }  
+          } 
+          Intent intent = new Intent(this,ClipImageActivity.class);
+          intent.putExtra("path", fileName);
+          startActivity(intent);
+		break;
+
+	default:
+		break;
+	}
+	   
+	   
+	   
+	   
+	   
+	   
+	
+}
 }

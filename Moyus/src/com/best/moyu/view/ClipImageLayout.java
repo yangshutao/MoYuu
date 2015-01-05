@@ -52,6 +52,12 @@ public class ClipImageLayout extends RelativeLayout
 		mZoomImageView.setHorizontalPadding(mHorizontalPadding);
 		mClipImageView.setHorizontalPadding(mHorizontalPadding);
 	}
+	
+
+	public ClipImageLayout(Context context) {
+		super(context);
+	}
+
 
 	/**
 	 * 对外公布设置边距的方�?单位为dp
