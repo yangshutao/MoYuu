@@ -18,6 +18,7 @@
             android:layout_marginTop="50dp"
             android:src="@drawable/touxiang_mains" />
     </RelativeLayout>
+    
     <TableLayout 
         android:layout_below="@id/bcc"
         android:layout_width="match_parent"
@@ -90,6 +91,31 @@
     			android:textSize="18dp"
                 />
             
+        </TableRow>
+        <View 
+            android:layout_width="fill_parent"
+            android:layout_height="0.3dp"
+            android:background="#cdc5bf"
+            />
+         <TableRow 
+            android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:padding="20dp"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:text="我的相册"
+    			android:layout_gravity="center"
+    			android:textSize="18dp"
+                />
+            <ImageView 
+                android:id="@+id/wodexiangce"
+                 android:layout_width="80dp"
+    			android:layout_height="80dp"
+    			android:src="@drawable/bg_img"
+    			
+                />
         </TableRow>
          
     </TableLayout>

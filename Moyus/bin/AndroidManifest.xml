@@ -45,7 +45,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.best.moyu.ui.FunctionMainActivity"></activity>
+         <activity android:name="com.best.moyu.ui.FunctionMainActivity"></activity>
         <activity android:name="com.best.moyu.login.RegisterUser"></activity>
         <activity android:name="com.best.moyu.activity.FellingAddActivity"></activity>
     	<activity android:name="com.best.moyu.activity.GroupActivity"></activity>
@@ -53,6 +53,13 @@
     	<activity android:name="com.best.moyu.data.MyDataActivity"></activity>
     	<activity android:name="com.best.moyu.ui.ClipImageActivity"></activity>
     	<activity android:name="com.best.moyu.ui.ScanLocalPicture"></activity>
-    </application>
+    	<activity android:name="com.best.moyu.friendscircle.MainActivity"></activity>
+    	<activity android:name="com.best.moyu.data.ReviseActivity"></activity>
+    	<activity android:name="com.best.moyu.activity.ChatWithActivity"></activity>
+    	<activity android:name="com.best.moyu.activity.AboutUsActivity"></activity>
+    	<activity android:name="com.best.moyu.activity.MessNoActivity"></activity>
+    	<activity android:name="com.best.moyu.activity.ChatBackgroundActivity"></activity>
+    	<activity android:name="com.best.moyu.activity.AccountActivity"></activity>
+ </application>
 
 </manifest>

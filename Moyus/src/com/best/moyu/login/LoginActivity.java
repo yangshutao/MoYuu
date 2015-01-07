@@ -108,7 +108,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener{
 			    	pd.dismiss();
 					//若账号和密码正确 就跳转到主页
 					Intent intentmain = new Intent(LoginActivity.this,FunctionMainActivity.class);
-			    	startActivity(intentmain);
+				//	intentmain.putExtra(name, value)
+					intentmain.putExtra("username",loguser);
+			    	intentmain.putExtra("password",logpass);
+					startActivity(intentmain);
 			    	finish();
 				}
 				

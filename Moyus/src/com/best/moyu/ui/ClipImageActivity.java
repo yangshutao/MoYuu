@@ -34,6 +34,7 @@ public class ClipImageActivity extends BaseActivity implements OnClickListener {
 	private ClipImageLayout mClipImageLayout;
 	public  static String path;
 	Button quxiao,xuanze;
+	private String mpath;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,20 +56,26 @@ public class ClipImageActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.chose_c:
 			//判断是否有sd卡
-			if (SDCardUtils.isExistSDCard()){
-				alert("有sd卡");
+			if (SDCardUtils.isExistSDCard()) {
+				mpath = SDCardUtils.createAppDir();
+			}else{
+				mpath = this.getFilesDir().getPath();
 			}
-			String name = new DateFormat().format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA)) + ".jpg";
+			String name = new DateFormat().format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA)) + ".png";
 			name ="moyu_"+name;
-			File file ;
+			File file= new File(mpath+"/Moyu/Image/"); ;
 			FileOutputStream fileoutputSteam = null;
-			file = new File("/sdcard/Moyu/Image/");
-			file.mkdirs();//创建文件夹
-			String fileName = "/sdcard/Moyu/Image/"+name;
+			//判断文件夹是否存在
+			if (!file.exists()){
+				file.mkdirs();//创建文件夹
+			}
+			String fileName = mpath+"/Moyu/Image/"+name;
 			Bitmap bitmap;
 			bitmap = mClipImageLayout.clip();
-			try {  
-				fileoutputSteam = new FileOutputStream(fileName);  
+			try {
+				  //将图片打包为文件
+				  fileoutputSteam = new FileOutputStream(fileName);
+				  //进行压缩处理
 	              bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileoutputSteam);// 把数据写入文件  
 	          } catch (FileNotFoundException e) {  
 	              e.printStackTrace();  
@@ -82,6 +89,7 @@ public class ClipImageActivity extends BaseActivity implements OnClickListener {
 	          }
 			Intent intent = new Intent(this,MyDataActivity.class);
 			intent.putExtra("imge", bitmap);
+			intent.putExtra("imagepath",fileName);
 			setResult(RESULT_OK, intent);
 			finish();
 			break;

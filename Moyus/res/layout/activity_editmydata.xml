@@ -12,7 +12,6 @@
 		android:layout_height="wrap_content"
 		android:text="编辑资料"
 		android:gravity="center_horizontal|center"
-		
 		android:layout_alignParentTop="true"
 		android:textSize="20dp"
 		android:textColor="#fff"
@@ -29,18 +28,57 @@
 	    android:layout_alignBottom="@id/bb"
 	    android:layout_alignParentRight="true"
 	    android:paddingRight="20dp"
-	    
 	    />
-	    <TableLayout 
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:layout_below="@id/baocun_shuju"
+		android:paddingTop="20dp"
+        >
+         <TableLayout 
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:orientation="vertical" 
-		    android:paddingTop="57dp"
+		    android:paddingTop="10dp"
 	    >
 	    <TableRow 
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
+	        >
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="头像"
+	            android:layout_gravity="center"
+	            android:textSize="18dp"
+	            android:paddingLeft="5dp"
+	            android:layout_weight="3"
+	            />
+	        <ImageView 
+		        android:id="@+id/headimage"
+		        android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_launcher"
+				android:layout_gravity="center_vertical"
+				android:paddingTop="10dp"
+		        />
+	    </TableRow>
+	     <View 
+            android:layout_width="fill_parent"
+            android:layout_height="0.3dp"
+            android:background="#cdc5bf"
+            />
+	    <TableRow 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
 	        >
 	        <TextView 
 	            android:layout_width="wrap_content"
@@ -72,6 +110,8 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
 	        >
 	        <TextView 
 	            android:layout_width="wrap_content"
@@ -80,18 +120,31 @@
 	            android:layout_gravity="center"
 	            android:textSize="18dp"
 	            android:paddingLeft="5dp"
-	            android:layout_weight="3"
 	            />
-	        <EditText 
-	            android:id="@+id/edit_sex"
+	        <RadioGroup 
+	            android:layout_width="wrap_content"
+	          	android:layout_height="wrap_content"
+	          	android:orientation="horizontal"
+	          	android:layout_gravity="center_vertical"
+	            android:paddingLeft="25dp"
+	           >
+	            <RadioButton
+	            android:id="@+id/sex_man"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:hint="男"
-	            android:layout_weight="9"
-	            android:layout_marginRight="10dp"
-	            android:layout_gravity="center_vertical"
-	            android:background="@drawable/register_input_bg"
-	            /> 
+	            android:text="男" 
+	            android:checked="true"
+	            />
+	        <RadioButton
+	            android:id="@+id/sex_wom"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="女" 
+	            android:layout_marginLeft="10dp"
+	            />
+	            
+	        </RadioGroup>
+	        
 	    </TableRow>
 	    <View 
             android:layout_width="fill_parent"
@@ -102,6 +155,8 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
 	        >
 	        <TextView 
 	            android:layout_width="wrap_content"
@@ -136,7 +191,8 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
 	        >
 	        <TextView 
 	            android:layout_width="wrap_content"
@@ -167,6 +223,8 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
 	        >
 	        <TextView 
 	            android:layout_width="wrap_content"
@@ -197,6 +255,8 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
 	        >
 	        <TextView 
 	            android:layout_width="wrap_content"
@@ -227,6 +287,8 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
+	        android:paddingTop="10dp"
+	        android:paddingBottom="10dp"
 	        >
 	        <TextView 
 	            android:layout_width="wrap_content"
@@ -256,6 +318,9 @@
             android:background="#cdc5bf"
             />
 	</TableLayout>
+        
+    </ScrollView>
+	   
     
 </RelativeLayout>
 

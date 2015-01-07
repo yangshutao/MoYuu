@@ -20,12 +20,13 @@ import com.example.moyu.R;
 
 public class FunctionMainActivity extends FragmentActivity implements OnClickListener {
 	RadioButton chat,friend,mood,meet,set_up;
+	
 	//自定颜色
 	int Color_whiter = Color.argb(100,255,255,255);
 	int Color_balck = Color.argb(255,3,3,3);
 	FragmentManager fm;
 	LinearLayout ll;
-	
+	public static String username,password;
 	public static Context context;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,9 @@ public class FunctionMainActivity extends FragmentActivity implements OnClickLis
 		setContentView(R.layout.activity_main);
 		
 		context = this;
-		
+		//获取密码和账号
+		 username = getIntent().getStringExtra("username");
+		 password = getIntent().getStringExtra("password");
 		chat = (RadioButton) findViewById(R.id.chat);
 		friend = (RadioButton) findViewById(R.id.friend);
 		mood = (RadioButton) findViewById(R.id.mood);

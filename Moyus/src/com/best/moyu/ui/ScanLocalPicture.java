@@ -16,6 +16,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -24,6 +25,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.best.moyu.baseactivity.BaseActivity;
+import com.best.moyu.data.EditMyDataActivity;
 import com.best.moyu.data.MyDataActivity;
 import com.example.moyu.R;
 import com.example.stickyheadergridview.GridItem;
@@ -42,7 +44,7 @@ public class ScanLocalPicture extends BaseActivity {
 	private List<GridItem> mGirdList = new ArrayList<GridItem>();
 	private static int section = 1;
 	private Map<String, Integer> sectionMap = new HashMap<String, Integer>();
-
+	Intent  i;
 	private ImageLoader imageLoader = ImageLoader.getInstance();
 	private DisplayImageOptions options = new DisplayImageOptions.Builder()
 			.showImageOnLoading(R.drawable.ic_launcher)
@@ -63,7 +65,9 @@ public class ScanLocalPicture extends BaseActivity {
 
 		mGridView = (GridView) findViewById(R.id.asset_grid);
 		mScanner = new ImageScanner(this);
-
+		
+		i= getIntent() ;
+		
 		mScanner.scanImages(new ScanCompleteCallBack() {
 			{
 				// mProgressDialog = ProgressDialog.show(MainActivity.this, "",
@@ -110,10 +114,24 @@ public class ScanLocalPicture extends BaseActivity {
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
-						Intent intent  = new Intent(ScanLocalPicture.this,MyDataActivity.class);
-						intent.putExtra("path",mGirdList.get(arg2).getPath());
-						setResult(RESULT_OK,intent);
-						finish();
+						
+						Log.i("imoyu",i.getIntExtra("jude",1)+">>>>>>>>>>>>>");
+						int jude = i.getIntExtra("jude",0);
+						if(jude==1){
+							Intent intent  = new Intent(ScanLocalPicture.this,EditMyDataActivity.class);
+							intent.putExtra("path",mGirdList.get(arg2).getPath());
+							setResult(RESULT_OK,intent);
+							finish();
+						}else if (jude==2){
+							Intent intent  = new Intent(ScanLocalPicture.this,MyDataActivity.class);
+							intent.putExtra("path",mGirdList.get(arg2).getPath());
+							setResult(RESULT_OK,intent);
+							finish();
+						}else {
+							alert("没有此页面");
+						}
+							
+						
 					}
 				});
 			}
